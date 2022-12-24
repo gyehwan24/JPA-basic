@@ -1,14 +1,30 @@
 package hellojpa;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class Member {
 
-    @Id
+    @Id  //pk값
     private Long id;
-    private String name;
+
+    @Column(name="name")  //DB에 저장할 칼럼명을 변수명과 다르게 지정해줄 수 있다
+    private String username;
+
+    private int age;
+
+    @Enumerated(EnumType.STRING)
+    private RoleType roleType;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdDate;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date lastModifiedDate;
+
+    @Lob
+    private String description;
 
     public Long getId() {
         return id;
@@ -19,10 +35,10 @@ public class Member {
     }
 
     public String getName() {
-        return name;
+        return username;
     }
 
     public void setName(String name) {
-        this.name=name;
+        this.username=name;
     }
 }
