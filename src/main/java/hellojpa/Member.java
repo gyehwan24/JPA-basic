@@ -41,4 +41,5 @@ public class Member {
     public void setName(String name) {
         this.username=name;
     }
+
 }
