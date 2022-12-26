@@ -10,7 +10,11 @@ public class Member {
     @GeneratedValue
     private Long id;
 
-    @Column(name="name")  //DB에 저장할 칼럼명을 변수명과 다르게 지정해줄 수 있다
+    @ManyToOne
+    @JoinColumn(name = "TEAM_ID")
+    private Team team;
+
+    @Column(name="USER_NAME")  //DB에 저장할 칼럼명을 변수명과 다르게 지정해줄 수 있다
     private String name;
 
     private String city;
@@ -19,6 +23,14 @@ public class Member {
 
     private String zipcode;
 
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
+    }
 
     public Long getId() {
         return id;
