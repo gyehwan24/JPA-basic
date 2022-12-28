@@ -10,10 +10,6 @@ public class Member {
     @GeneratedValue
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "TEAM_ID")
-    private Team team;
-
     @Column(name="USER_NAME")  //DB에 저장할 칼럼명을 변수명과 다르게 지정해줄 수 있다
     private String name;
 
@@ -23,6 +19,9 @@ public class Member {
 
     private String zipcode;
 
+    @ManyToOne
+    @JoinColumn(name = "TEAM_ID")
+    private Team team;
 
     public Team getTeam() {
         return team;

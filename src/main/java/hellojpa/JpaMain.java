@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import java.util.List;
 
 public class JpaMain {
     public static void main(String[] args) {
@@ -44,6 +45,8 @@ public class JpaMain {
             Team newTeam = new Team();
             newTeam.setName("TeamB");
             em.persist(newTeam);
+
+            List<Member> members = findMember.getTeam().getMembers();
 
             tx.commit();
         } catch (Exception e) {
