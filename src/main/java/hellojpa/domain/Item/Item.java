@@ -1,4 +1,4 @@
-package hellojpa.domain;
+package hellojpa.domain.Item;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

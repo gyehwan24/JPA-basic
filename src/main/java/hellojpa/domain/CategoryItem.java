@@ -1,12 +1,14 @@
 package hellojpa.domain;
 
+import hellojpa.domain.Item.Item;
+
 import javax.persistence.*;
 
 @Entity
 public class CategoryItem {
 
     @Id @GeneratedValue
-    @Column(name = "CATEGORYITEM_ID")
+    @Column(name = "CATEGORY_ITEM_ID")
     private Long id;
 
     @ManyToOne
