@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class JpaMain {
@@ -39,15 +40,15 @@ public class JpaMain {
 
             em.persist(album);
 
+            Member member = new Member();
+            member.setName("다은");
+            member.setCity("광주");
+            member.setLastModifiedBy("계환");
+            member.setCreatedDate(LocalDateTime.now());
+            em.persist(member);
+
             em.flush();
             em.clear();
-
-            Movie findMovie = em.find(Movie.class, movie.getId());
-            Album findAlbum = em.find(Album.class, album.getId());
-            System.out.println("==================");
-            System.out.println("findMovie = " + findMovie.getName());
-            System.out.println("findAlbum.getName() = " + findAlbum.getName());
-            System.out.println("==================");
 
             tx.commit();
         } catch (Exception e) {
