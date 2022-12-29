@@ -1,7 +1,10 @@
 package hellojpa;
 
+import hellojpa.domain.Item.Album;
+import hellojpa.domain.Item.Movie;
 import hellojpa.domain.Member;
 import hellojpa.domain.Team;
+import org.h2.command.ddl.AlterUser;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -20,20 +23,31 @@ public class JpaMain {
         tx.begin();
 
         try {
-            Team team = new Team();
-            team.setName("TeamA");
-            em.persist(team);
 
-            Member member = new Member();
-            member.setName("memberA");
-            //member.setTeam(team);
-            em.persist(member);
+            Movie movie = new Movie();
+            movie.setName("아바타");
+            movie.setActor("계환");
+            movie.setDirector("놀란");
+            movie.setPrice(14000);
 
-            //연관관계 편의 메소드를 이용하여 값을 넣어준다.
-            team.addMember(member);
+            em.persist(movie);
+
+            Album album = new Album();
+            album.setName("23");
+            album.setPrice(1200);
+            album.setArtist("콜드");
+
+            em.persist(album);
 
             em.flush();
             em.clear();
+
+            Movie findMovie = em.find(Movie.class, movie.getId());
+            Album findAlbum = em.find(Album.class, album.getId());
+            System.out.println("==================");
+            System.out.println("findMovie = " + findMovie.getName());
+            System.out.println("findAlbum.getName() = " + findAlbum.getName());
+            System.out.println("==================");
 
             tx.commit();
         } catch (Exception e) {
