@@ -1,11 +1,13 @@
 package hellojpa.domain.Item;
 
+import hellojpa.domain.BaseEntity;
+
 import javax.persistence.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn
-public class Item {
+public class Item extends BaseEntity {
 
     @Id @GeneratedValue
     @Column(name = "ITEM_ID")
