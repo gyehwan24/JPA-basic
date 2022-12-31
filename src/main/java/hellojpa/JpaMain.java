@@ -25,31 +25,17 @@ public class JpaMain {
 
         try {
 
-            Movie movie = new Movie();
-            movie.setName("아바타");
-            movie.setActor("계환");
-            movie.setDirector("놀란");
-            movie.setPrice(14000);
-
-            em.persist(movie);
-
-            Album album = new Album();
-            album.setName("23");
-            album.setPrice(1200);
-            album.setArtist("콜드");
-
-            em.persist(album);
-
             Member member = new Member();
-            member.setName("다은");
-            member.setCity("광주");
-            member.setLastModifiedBy("계환");
-            member.setCreatedDate(LocalDateTime.now());
+            member.setName("memberA");
             em.persist(member);
-
+            
             em.flush();
             em.clear();
 
+            Member refMember = em.getReference(Member.class, member.getId());
+            System.out.println("before");
+            System.out.println("refMember.getName() = " + refMember.getName());
+            System.out.println("after");
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
