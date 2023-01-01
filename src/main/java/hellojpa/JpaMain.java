@@ -1,5 +1,6 @@
 package hellojpa;
 
+import hellojpa.domain.Address;
 import hellojpa.domain.Item.Album;
 import hellojpa.domain.Item.Movie;
 import hellojpa.domain.Member;
@@ -35,6 +36,7 @@ public class JpaMain {
 
             Member memberA = new Member();
             memberA.setName("memberA");
+            memberA.setHomeAddress(new Address("city", "street", "zipcode"));
             em.persist(memberA);
             teamA.addMember(memberA);
 
