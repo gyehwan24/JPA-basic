@@ -4,6 +4,7 @@ import hellojpa.domain.Address;
 import hellojpa.domain.Item.Album;
 import hellojpa.domain.Item.Movie;
 import hellojpa.domain.Member;
+import hellojpa.domain.Period;
 import hellojpa.domain.Team;
 import org.h2.command.ddl.AlterUser;
 
@@ -37,6 +38,8 @@ public class JpaMain {
             Member memberA = new Member();
             memberA.setName("memberA");
             memberA.setHomeAddress(new Address("city", "street", "zipcode"));
+            memberA.setWorkPeriod(new Period());
+
             em.persist(memberA);
             teamA.addMember(memberA);
 

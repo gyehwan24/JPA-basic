@@ -15,6 +15,9 @@ public class Member extends BaseEntity{
     private String name;
 
     @Embedded
+    private Period workPeriod;
+
+    @Embedded
     private Address homeAddress;
 
     //지연로딩
@@ -24,6 +27,14 @@ public class Member extends BaseEntity{
 
     @OneToMany(mappedBy = "member")
     private List<Order> orders = new ArrayList<>();
+
+    public Period getWorkPeriod() {
+        return workPeriod;
+    }
+
+    public void setWorkPeriod(Period workPeriod) {
+        this.workPeriod = workPeriod;
+    }
 
     public Team getTeam() {
         return team;
