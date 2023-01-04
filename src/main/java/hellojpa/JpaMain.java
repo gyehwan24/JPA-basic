@@ -35,16 +35,21 @@ public class JpaMain {
             teamB.setName("TeamB");
             em.persist(teamB);
 
+            Address addressA = new Address("city", "street", "zipcode");
+
             Member memberA = new Member();
             memberA.setName("memberA");
-            memberA.setHomeAddress(new Address("city", "street", "zipcode"));
+            memberA.setHomeAddress(addressA);
             memberA.setWorkPeriod(new Period());
 
             em.persist(memberA);
             teamA.addMember(memberA);
 
+            Address addressB = new Address("cityB", "streetB", "zipcodeB");
+
             Member memberB = new Member();
             memberB.setName("memberA");
+            memberB.setHomeAddress(addressB);
             em.persist(memberB);
             teamB.addMember(memberB);
 
