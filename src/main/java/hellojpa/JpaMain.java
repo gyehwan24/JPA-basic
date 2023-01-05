@@ -45,7 +45,7 @@ public class JpaMain {
             em.persist(memberA);
             teamA.addMember(memberA);
 
-            Address addressB = new Address("cityB", "streetB", "zipcodeB");
+            Address addressB = new Address(addressA.getCity(), "streetB", "zipcodeB");
 
             Member memberB = new Member();
             memberB.setName("memberA");
