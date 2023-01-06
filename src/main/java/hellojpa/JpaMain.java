@@ -27,37 +27,22 @@ public class JpaMain {
 
         try {
 
-            Team teamA = new Team();
-            teamA.setName("TeamA");
-            em.persist(teamA);
+            Member member = new Member();
+            member.setName("member1");
+            member.setHomeAddress(new Address("homeCity", "street", "zipcode"));
 
-            Team teamB = new Team();
-            teamB.setName("TeamB");
-            em.persist(teamB);
+            member.getFavoriteFoods().add("chicken");
+            member.getFavoriteFoods().add("stake");
+            member.getFavoriteFoods().add("tako");
 
-            Address addressA = new Address("city", "street", "zipcode");
+            member.getAddressHistory().add(new Address("old1", "street", "zipcode"));
+            member.getAddressHistory().add(new Address("old2", "street", "zipcode"));
 
-            Member memberA = new Member();
-            memberA.setName("memberA");
-            memberA.setHomeAddress(addressA);
-            memberA.setWorkPeriod(new Period());
-
-            em.persist(memberA);
-            teamA.addMember(memberA);
-
-            Address addressB = new Address(addressA.getCity(), "streetB", "zipcodeB");
-
-            Member memberB = new Member();
-            memberB.setName("memberA");
-            memberB.setHomeAddress(addressB);
-            em.persist(memberB);
-            teamB.addMember(memberB);
+            em.persist(member);
 
             em.flush();
             em.clear();
 
-            Member findMemberA = em.find(Member.class, memberA.getId());
-            System.out.println("findMemberA = " + findMemberA.getName());
 
             tx.commit();
         } catch (Exception e) {
