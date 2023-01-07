@@ -30,19 +30,21 @@ public class JpaMain {
             Member member = new Member();
             member.setName("member1");
             member.setHomeAddress(new Address("homeCity", "street", "zipcode"));
-
-            member.getFavoriteFoods().add("chicken");
-            member.getFavoriteFoods().add("stake");
-            member.getFavoriteFoods().add("tako");
-
-            member.getAddressHistory().add(new Address("old1", "street", "zipcode"));
-            member.getAddressHistory().add(new Address("old2", "street", "zipcode"));
+            member.setWorkPeriod(new Period());
 
             em.persist(member);
+
+            Team team = new Team();
+            team.setName("team1");
+            em.persist(team);
+            team.addMember(member);
 
             em.flush();
             em.clear();
 
+            Member findMember = em.find(Member.class, member.getId());
+            System.out.println("findMember.name = " + findMember.getName());
+            System.out.println("findMember.getTeam().getName() = " + findMember.getTeam().getName());
 
             tx.commit();
         } catch (Exception e) {
