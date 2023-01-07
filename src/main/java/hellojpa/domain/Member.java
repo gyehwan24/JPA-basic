@@ -16,6 +16,8 @@ public class Member extends BaseEntity{
     @Column(name="USER_NAME")  //DB에 저장할 칼럼명을 변수명과 다르게 지정해줄 수 있다
     private String name;
 
+    private int age;
+
     @Embedded
     private Period workPeriod;
 
@@ -30,6 +32,14 @@ public class Member extends BaseEntity{
     @OneToMany(mappedBy = "member")
     private List<Order> orders = new ArrayList<>();
 
+    @Override
+    public String toString() {
+        return "Member{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                '}';
+    }
 
     public Period getWorkPeriod() {
         return workPeriod;
@@ -63,6 +73,13 @@ public class Member extends BaseEntity{
         this.name = name;
     }
 
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
 
     public Address getHomeAddress() {
         return homeAddress;
