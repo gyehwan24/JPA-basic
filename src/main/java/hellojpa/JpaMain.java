@@ -27,24 +27,33 @@ public class JpaMain {
 
         try {
 
-            Member member = new Member();
-            member.setName("member1");
-            member.setHomeAddress(new Address("homeCity", "street", "zipcode"));
-            member.setWorkPeriod(new Period());
+            Team teamA = new Team();
+            teamA.setName("teamA");
+            em.persist(teamA);
 
-            em.persist(member);
-
-            Team team = new Team();
-            team.setName("team1");
-            em.persist(team);
-            team.addMember(member);
+            for (int i = 0; i < 10; i++) {
+                Member member = new Member();
+                member.setName("member"+i);
+                member.setAge(i);
+                em.persist(member);
+                teamA.addMember(member);
+            }
 
             em.flush();
             em.clear();
 
-            Member findMember = em.find(Member.class, member.getId());
-            System.out.println("findMember.name = " + findMember.getName());
-            System.out.println("findMember.getTeam().getName() = " + findMember.getTeam().getName());
+            List<Member> result = em.createQuery("select m from Member m order by m.age desc", Member.class)
+                    .setFirstResult(1)
+                    .setMaxResults(10)
+                    .getResultList();
+
+            for (Member member : result) {
+                System.out.println("member = " + member);
+            }
+
+            List<Team> resultList = em.createQuery("select t from Member m join m.team t", Team.class)
+                    .getResultList();
+
 
             tx.commit();
         } catch (Exception e) {
